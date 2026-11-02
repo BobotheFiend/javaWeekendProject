@@ -1,6 +1,6 @@
 package safeBank.exceptions;
 
-public class InvalidAmountException extends BankingException {
+public class InvalidAmountException extends SafeBankException {
     public InvalidAmountException(String message) {
         super(message);
     }

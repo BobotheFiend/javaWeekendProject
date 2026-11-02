@@ -6,8 +6,7 @@ import java.math.BigDecimal;
 
 @Data
 public class CreateAccountResponse {
-    String firstName;
-    String lastName;
+    String fullName;
     BigDecimal openingBalance;
     String number;
 }

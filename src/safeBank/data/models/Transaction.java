@@ -13,7 +13,6 @@ public class Transaction {
     private String id;
     private String accountNumber;
     private BigDecimal amount;
-    private String description;
     private TransactionType type;
     private LocalDateTime dateTime;
 

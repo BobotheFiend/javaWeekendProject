@@ -17,9 +17,4 @@ public class CreateAccountRequest {
     @NotBlank
     String pin;
 
-    @NotBlank
-    String number;
-
-
-    BigDecimal openingBalance;
 }
