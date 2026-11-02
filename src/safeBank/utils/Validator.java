@@ -2,6 +2,7 @@ package safeBank.utils;
 
 import safeBank.dtos.requests.CreateAccountRequest;
 import safeBank.dtos.requests.DepositRequest;
+import safeBank.dtos.requests.LoginRequest;
 import safeBank.dtos.requests.WithdrawalRequest;
 import safeBank.exceptions.AuthAccountException;
 import safeBank.exceptions.InvalidAmountException;
@@ -17,9 +18,9 @@ public class Validator {
     private static final String accountRegex = "^[0-9]+$";
     private static final String amountRegex = "^[1-9]\d*(?:\\.\\d{1,2})?$";
 
-    public static void validate(CreateAccountRequest request) throws AuthAccountException {
+    public static void validate(CreateAccountRequest request) throws  AuthAccountException{
 
-;
+
 
         if(request == null) throw new AuthAccountException("createAccount request is null");
 
@@ -60,6 +61,16 @@ public class Validator {
         if(!request.getAccountNumber().matches(accountRegex)) throw new AuthAccountException("Account number is invalid");
 
 
+
+    }
+
+    public static void validate(LoginRequest request) throws AuthAccountException {
+        if(request == null) throw new AuthAccountException("LoginRequest cannot be null");
+        if(request.getAccountNumber() == null) throw new AuthAccountException("LoginRequest cannot be null");
+        if(request.getPin() == null) throw new AuthAccountException("LoginRequest cannot be null");
+
+        if(!request.getAccountNumber().matches(accountRegex)) throw new AuthAccountException("Account number is invalid");
+        if(!request.getPin().matches(pinRegex)) throw new AuthAccountException("Pin is to be four digits");
 
     }
 }

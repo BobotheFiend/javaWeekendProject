@@ -30,8 +30,17 @@ public class AuthAccountImpl implements AuthAccount {
     @Override
     public String login(LoginRequest loginRequest) throws AuthAccountException {
         validate(loginRequest);
-        return "";
+        Account foundAccount = accountRepository.findByNumber(loginRequest.getAccountNumber());
+        if(foundAccount == null) throw new AuthAccountException("Account not found");
+        if(!foundAccount.getPin().equals(loginRequest.getPin())) throw new AuthAccountException("Invalid input!");
+        if(!foundAccount.getNumber().equals(loginRequest.getAccountNumber())) throw new AuthAccountException("Invalid input!");
+
+        foundAccount.setLoggedIn(true);
+        accountRepository.save(foundAccount);
+
+        return "Success";
     }
+
 
 
 }

@@ -11,4 +11,6 @@ public class Account {
     private BigDecimal balance;
     private String number;
     private String pin;
+    private boolean isLoggedIn;
+
 }
