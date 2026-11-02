@@ -9,4 +9,5 @@ public class CreateAccountResponse {
     String firstName;
     String lastName;
     BigDecimal openingBalance;
+    String number;
 }

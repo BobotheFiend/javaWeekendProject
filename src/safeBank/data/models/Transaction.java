@@ -4,18 +4,17 @@ import lombok.Data;
 import safeBank.data.models.enums.TransactionType;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+
 
 @Data
 public class Transaction {
 
-    private String transactionId;
-    private String accountId;
+    private String id;
+    private String accountNumber;
     private BigDecimal amount;
     private String description;
     private TransactionType type;
-    private LocalDate date;
-    private LocalTime time;
+    private LocalDateTime dateTime;
 
 }

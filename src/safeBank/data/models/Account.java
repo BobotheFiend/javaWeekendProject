@@ -9,5 +9,6 @@ public class Account {
 
     private String fullName;
     private BigDecimal balance;
-    
+    private String number;
+    private String pin;
 }
