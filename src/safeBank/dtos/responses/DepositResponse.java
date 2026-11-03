@@ -1,6 +1,7 @@
 package safeBank.dtos.responses;
 
 import lombok.Data;
+import safeBank.data.models.enums.TransactionType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,4 +13,5 @@ public class DepositResponse {
     String transactionId;
     String accountNumber;
     String bankName;
+    TransactionType transactionType;
 }

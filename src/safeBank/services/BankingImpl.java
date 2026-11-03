@@ -19,6 +19,7 @@ import safeBank.utils.Mapper;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static safeBank.utils.Validator.validate;
 
@@ -47,8 +48,14 @@ public class BankingImpl implements Banking {
         withdrawalResponse.setDateTime(LocalDateTime.now(Clock.systemUTC()));
         withdrawalResponse.setAmountWithdrew(request.getAmount());
 
+        withdrawalResponse.setBankName("SAFE BANK");
         Transaction transaction = new Transaction();
-        transactionRepository.save(Mapper.map(transaction, foundAccount, withdrawalResponse));
+        transaction = transactionRepository.save(Mapper.map(transaction, foundAccount, withdrawalResponse));
+
+        withdrawalResponse.setTransactionId(transaction.getId());
+        withdrawalResponse.setAccountNumber(transaction.getAccountNumber());
+        withdrawalResponse.setTransactionType(transaction.getType());
+
         return withdrawalResponse;
     }
 
@@ -66,15 +73,30 @@ public class BankingImpl implements Banking {
         DepositResponse response = new DepositResponse();
         response.setAmountDeposited(request.getAmount());
         response.setDateTime(LocalDateTime.now(Clock.systemDefaultZone()));
+        response.setBankName("SAFE BANK");
 
         Transaction transaction = new Transaction();
         transaction = transactionRepository.save(Mapper.map(transaction, foundAccount, response));
 
         response.setTransactionId(transaction.getId());
         response.setAccountNumber(transaction.getAccountNumber());
-
+        response.setTransactionType(transaction.getType());
         return response;
 
+    }
+
+    @Override
+    public List<Transaction> transactions(String accountNumber) throws SafeBankException {
+        List<Transaction> transactions =  transactionRepository.findAll(accountNumber);
+        if(transactions == null) throw new SafeBankException("No Transaction Found!");
+        return transactions;
+    }
+
+    @Override
+    public BigDecimal balance(String accountNumber) throws SafeBankException {
+        Account  foundAccount = accountRepository.findByNumber(accountNumber);
+        if (foundAccount == null) throw new InvalidAmountException("Account not found");
+        return foundAccount.getBalance();
     }
 
 }

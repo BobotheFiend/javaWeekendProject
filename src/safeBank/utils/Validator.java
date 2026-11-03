@@ -16,7 +16,7 @@ public class Validator {
     private static final String regex = "^[a-zA-Z]+$";
     private static final String pinRegex = "^[0-9]{4}$";
     private static final String accountRegex = "^[0-9]+$";
-    private static final String amountRegex = "^[1-9]\d*(?:\\.\\d{1,2})?$";
+    private static final String amountRegex = "^[1-9]\\d*(?:\\.\\d{1,2})?$";
 
     public static void validate(CreateAccountRequest request) throws  AuthAccountException{
 
