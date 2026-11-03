@@ -12,11 +12,11 @@ public class BankingController {
 
     private final static Banking bank = new BankingImpl();
 
-    public static DepositResponse deposit(DepositRequest request) throws SafeBankException {
+    public  DepositResponse deposit(DepositRequest request) throws SafeBankException {
         return bank.deposit(request);
     }
 
-    public static WithdrawalResponse withdraw(WithdrawalRequest request) throws SafeBankException {
+    public  WithdrawalResponse withdraw(WithdrawalRequest request) throws SafeBankException {
         return bank.withdraw(request);
     }
 }

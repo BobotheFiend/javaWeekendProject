@@ -9,4 +9,7 @@ import java.time.LocalDateTime;
 public class DepositResponse {
     private String amountDeposited;
     LocalDateTime dateTime;
+    String transactionId;
+    String accountNumber;
+    String bankName;
 }

@@ -11,11 +11,11 @@ public class AuthController {
 
     private static final AuthAccount authAccount = new AuthAccountImpl();
 
-    public static CreateAccountResponse register(CreateAccountRequest request) throws AuthAccountException {
+    public CreateAccountResponse register(CreateAccountRequest request) throws AuthAccountException {
         return authAccount.createAccount(request);
     }
 
-    public static String login(LoginRequest request) throws AuthAccountException {
+    public String login(LoginRequest request) throws AuthAccountException {
         return authAccount.login(request);
     }
 

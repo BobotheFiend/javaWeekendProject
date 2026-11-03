@@ -68,7 +68,10 @@ public class BankingImpl implements Banking {
         response.setDateTime(LocalDateTime.now(Clock.systemDefaultZone()));
 
         Transaction transaction = new Transaction();
-        transactionRepository.save(Mapper.map(transaction, foundAccount, response));
+        transaction = transactionRepository.save(Mapper.map(transaction, foundAccount, response));
+
+        response.setTransactionId(transaction.getId());
+        response.setAccountNumber(transaction.getAccountNumber());
 
         return response;
 
