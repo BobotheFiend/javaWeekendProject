@@ -29,6 +29,8 @@ public class Main {
     private static BankingController bankingController = new BankingController();
     private static int tries = 0;
     private static String ACCOUNT_NUMBER;
+
+
     private static void mainMenu() throws SafeBankException {
         print("""
                 Welcome to the Safe Bank!

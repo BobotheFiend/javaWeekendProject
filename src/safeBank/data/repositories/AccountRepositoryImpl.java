@@ -12,8 +12,10 @@ public class AccountRepositoryImpl implements AccountRepository {
 
     @Override
     public Account save(Account account) {
-        generateAccountNumber();
-        account.setNumber(String.valueOf(GENERATED_ACCOUNT_NUMBER));
+        if(account.getNumber() == null) {
+            generateAccountNumber();
+            account.setNumber(String.valueOf(GENERATED_ACCOUNT_NUMBER));
+        }
         accounts.put(account.getNumber(), account);
         return account;
     }
